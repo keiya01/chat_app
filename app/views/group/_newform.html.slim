@@ -1,0 +1,23 @@
+.new-form
+    h3 グループ作成
+    .error
+      - @group.errors.full_messages.each do |message|
+        p = message
+      - @user.errors.full_messages.each do |message|
+        p = message
+    = form_tag '/chatroom/create' do
+      label name="username" あなたのニックネーム(3文字以上)
+      br
+      input.input-text type="text" name="username" placeholder="ニックネーム入力" value="#{params[:username]}"
+      br
+      label name="name" グループ名(3文字以上)
+      br
+      input.input-text type="text" name="name" placeholder="グループ名入力" value="#{params[:name]}"
+      br
+      label name="password" パスワード(5文字以上)
+      br
+      input.input-text type="password" name="password" placeholder="パスワード入力"
+      br
+      = link_to '【利用規約】をご確認のうえご利用ください。','/',class: 'border-none agreement-link'
+      input.submit-btn type="submit" value='作成する' data-disable-with="作成中..."
+    p.move-btn#move-login = link_to 'ログイン画面へ', '/chatroom/login', class: 'border-none btn-white'

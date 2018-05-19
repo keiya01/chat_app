@@ -12,4 +12,73 @@
  *
  *= require_tree .
  *= require_self
+ *= require font-awesome
  */
+/*初期化処理*/
+*{
+	box-sizing: border-box;
+}
+body{
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	font-family:-apple-system, BlinkMacSystemFont, "Helvetica Neue", "Yu Gothic",
+		YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial,
+		"メイリオ", Meiryo, sans-serif
+		;
+}
+h1,h2,h3,h4,h5,p,i{
+	margin: 0;
+	padding: 0;
+}
+input, button, textarea{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: none;
+  outline: none;
+  border: none;
+}
+input[type='submit'], button{
+	outline: none;
+	border: none;
+	border-radius: none;
+	cursor: pointer;
+}
+textarea{
+	resize: none;
+}
+
+/*button*/
+.submit-btn{
+	background-color: #4169e1;
+	padding: 10px 15px;
+	border-radius: 30px;
+	color: #fff;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+/*link setting*/
+.border-none{
+	text-decoration: none;
+	border: none;
+}
+.btn-white{
+	color: #fff;
+}
+
+/*error*/
+.error{
+	text-align: center;
+	color: tomato;
+	font-size: 15px;
+}
+
+/*clear*/
+.clear-right{
+	clear: right;
+}
+.clear-left{
+	clear: left;
+}

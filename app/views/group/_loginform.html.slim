@@ -1,0 +1,22 @@
+.new-form
+    h3 ログイン
+    .error
+      - if flash[:error]
+        p = flash[:error]
+      - @user.errors.full_messages.each do |message|
+        p = message
+    = form_tag '/chatroom/login' do
+      label name="username" あなたのニックネーム(3文字以上)
+      br
+      input.input-text type="text" name="username" placeholder="ニックネーム入力" value="#{params[:username]}"
+      br
+      label name="pass" グループID
+      br
+      input.input-text type="text" name="pass" placeholder="グループID入力" value="#{params[:pass]}"
+      br
+      label name="password" パスワード
+      br
+      input.input-text type="password" name="password" placeholder="パスワード入力"
+      br
+      input.submit-btn type="submit" value='ログイン' data-disable-with="処理中..."
+    p.move-btn#move-new = link_to 'グループ作成画面へ', '/', class: 'border-none btn-white'

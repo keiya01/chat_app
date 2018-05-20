@@ -6,9 +6,9 @@
       - @user.errors.full_messages.each do |message|
         p = message
     = form_tag "/chatroom/login_form" do
-      label name="pass" グループID
+      label name="name_id" グループID
       br
-      input.input-text type="text" name="entry_pass" placeholder="グループID入力" value="#{params[:entry_pass]}"
+      input.input-text type="text" name="name_id" placeholder="グループID入力" value="#{params[:name_id]}"
       br
       label name="password" パスワード
       br

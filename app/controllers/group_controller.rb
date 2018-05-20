@@ -40,8 +40,7 @@ class GroupController < ApplicationController
 		  if params[:nickname]
 			@user = User.find_by(nickname: params[:nickname])
 		  else
-			@user = User.new(name: 'Guest', group_id: @group.id)
-			@user.save
+			@user = User.create(name: 'Guest', group_id: @group.id)
 		  end
 		  if @user
 		    session[:user_id] = @user.id

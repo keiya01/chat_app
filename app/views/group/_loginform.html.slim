@@ -6,10 +6,6 @@
       - @user.errors.full_messages.each do |message|
         p = message
     = form_tag "/chatroom/login_form" do
-      label name="username" あなたのニックネーム(3文字以上)
-      br
-      input.input-text type="text" name="username" placeholder="ニックネーム入力" value="#{params[:username]}"
-      br
       label name="pass" グループID
       br
       input.input-text type="text" name="entry_pass" placeholder="グループID入力" value="#{params[:entry_pass]}"
@@ -19,4 +15,4 @@
       input.input-text type="password" name="password" placeholder="パスワード入力"
       br
       input.submit-btn type="submit" value='ログイン' data-disable-with="処理中..."
-    p.move-btn#move-new = link_to 'グループ作成画面へ', '/', class: 'border-none btn-white'
+    p#move-new = link_to 'グループ作成画面へ', '/', class: 'border-none btn-white move-btn'

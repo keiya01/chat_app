@@ -4,7 +4,7 @@
 .chat-room
   .message-list
     #messages
-      = render partial: 'messages/message', collection: @messages, as: 'message'
+      = render partial: 'messages/message', collection: @messages, as: 'message', locals: {user: @current_user}
   .chat-form
     = form_tag '' do
       label チャット

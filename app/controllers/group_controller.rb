@@ -18,19 +18,15 @@ class GroupController < ApplicationController
 
 	def create
 		pass = SecureRandom.urlsafe_base64
-		@group = Group.new(name: params[:name], entry_pass: pass, password: params[:password])
+		@group = Group.new(name: 'Group', entry_pass: pass, password: params[:password], name_id: params[:name_id])
 		if @group.save
-			@user = User.new(name: params[:username], group_id: @group.id)
-			if @user.save
-			  @group.user_id = @user.id
-			  @group.save
-			  session[:user_id] = @user.id
-			  redirect_to "/chatroom/#{@group.entry_pass}", notice: 'グループを作成しました。'
-			else
-				render 'group/new'
-			end
+		  @user = User.create(name: 'Guest', group_id: @group.id)
+		  @group.user_id = @user.id
+		  @group.save
+		  session[:user_id] = @user.id
+		  redirect_to "/chatroom/#{@group.entry_pass}", notice: 'グループを作成しました。'
 		else
-			render 'group/new'
+	      render 'group/new'
 		end
 	end
 
@@ -39,17 +35,21 @@ class GroupController < ApplicationController
 	end
 
 	def login_form
-		@group = Group.find_by(entry_pass: params[:entry_pass])
+		@group = Group.find_by(name_id: params[:name_id])
 		if @group && @group.authenticate(params[:password])
-			@user = User.new(name: params[:username], group_id: @group.id)
-			if @user.save
-			  session[:user_id] = @user.id
-			  redirect_to "/chatroom/#{@group.entry_pass}", notice: 'グループを作成しました。'
-			else
-			  render 'group/login'
-			end
+		  if params[:nickname]
+			@user = User.find_by(nickname: params[:nickname])
+		  else
+			@user = User.new(name: 'Guest', group_id: @group.id)
+			@user.save
+		  end
+		  if @user
+		    session[:user_id] = @user.id
+		    redirect_to "/chatroom/#{@group.entry_pass}", notice: 'グループを作成しました。'
+		  else
+			redirect_to '/chatroom/login', notice: "もう一度実行してください"
+		  end
 		else
-			redirect_to '/chatroom/login', notice: "IDまたはパスワードが違います。"
 		end
 	end
 

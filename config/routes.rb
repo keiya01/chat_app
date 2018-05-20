@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   post 'chatroom/create' => 'group#create'
   get 'chatroom/login' => 'group#login'
   post 'chatroom/login_form' => 'group#login_form'
-  post 'logout' => 'group#logout'
+  post 'chatroom/:pass/logout' => 'group#logout'
   get 'chatroom/:pass' => 'group#show'
 
 end

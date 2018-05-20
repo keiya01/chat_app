@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   def brock_not_current_user
   	unless @current_user
   		flash[:notice] = "ログインしてください。"
-  		redirect_to("chatroom/login")
+  		redirect_to("/chatroom/login")
   	end
   end
 

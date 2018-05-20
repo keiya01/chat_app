@@ -9,7 +9,8 @@ class MessageBroadcastJob < ApplicationJob
 
   private
     def render_message(message)
-      ApplicationController.renderer.render(partial: 'messages/message', locals: { message: message })
+      user = User.find(message.user_id)
+      ApplicationController.renderer.render(partial: 'messages/message', locals: { message: message, user: @current_user })
     end
 
 end

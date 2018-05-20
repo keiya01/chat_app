@@ -1,6 +1,6 @@
 class GroupController < ApplicationController
-	before_action :brock_not_current_user, {only: [:show]}
-	before_action :brock_current_user, {only: [:new, :create]}
+	before_action :brock_not_current_user, {only: [:show, :logout]}
+	before_action :brock_current_user, {only: [:new, :create, :login, :login_form]}
 
 	def show
 		@group = Group.find_by(entry_pass: params[:pass])
@@ -35,10 +35,11 @@ class GroupController < ApplicationController
 	end
 
 	def login
+		@user = User.new
 	end
 
 	def login_form
-		@group = Group.find_by(entry_pass: params[:pass])
+		@group = Group.find_by(entry_pass: params[:entry_pass])
 		if @group && @group.authenticate(params[:password])
 			@user = User.new(name: params[:username], group_id: @group.id)
 			if @user.save
@@ -54,7 +55,7 @@ class GroupController < ApplicationController
 
 	def logout
 		@group = Group.find_by(entry_pass: params[:pass])
-		if @current_user
+		if @current_user && @group.id == @current_user.group_id
 			session[:user_id] = nil
 			@current_user.destroy if @current_user.nickname.blank?
 			@group.destroy if @group.user_id == @current_user.id

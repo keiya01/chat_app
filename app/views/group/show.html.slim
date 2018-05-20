@@ -1,12 +1,13 @@
 .chat-room-header
-  = link_to '退出する', '/logout', method: 'post', class: 'logout border-none btn-white'
+  = link_to '退出する', "/chatroom/#{@group.entry_pass}/logout", method: 'post', class: 'logout border-none btn-white'
   h3.chat-name = @group.name
 .chat-room
   .message-list
     #messages
       = render partial: 'messages/message', collection: @messages, as: 'message'
-.chat-form
-  = form_tag '' do
-    label チャット
-    input type="text" data-behavior="room_speaker"
-    input type="hidden" id="group_id" value="#{@group.id}"
+  .chat-form
+    = form_tag '' do
+      label チャット
+      br
+      input type="text" data-behavior="room_speaker"
+      input type="hidden" id="group_id" value="#{@group.id}"

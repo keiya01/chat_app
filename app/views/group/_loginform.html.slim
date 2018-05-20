@@ -5,14 +5,14 @@
         p = flash[:error]
       - @user.errors.full_messages.each do |message|
         p = message
-    = form_tag '/chatroom/login' do
+    = form_tag "/chatroom/login_form" do
       label name="username" あなたのニックネーム(3文字以上)
       br
       input.input-text type="text" name="username" placeholder="ニックネーム入力" value="#{params[:username]}"
       br
       label name="pass" グループID
       br
-      input.input-text type="text" name="pass" placeholder="グループID入力" value="#{params[:pass]}"
+      input.input-text type="text" name="entry_pass" placeholder="グループID入力" value="#{params[:entry_pass]}"
       br
       label name="password" パスワード
       br

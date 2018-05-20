@@ -49,6 +49,7 @@ class GroupController < ApplicationController
 			redirect_to '/chatroom/login', notice: "もう一度実行してください"
 		  end
 		else
+			redirect_to '/chatroom/login', notice: "パスワードまたはグループIDが違います。"
 		end
 	end
 

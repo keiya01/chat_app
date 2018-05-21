@@ -44,12 +44,14 @@ class GroupController < ApplicationController
 		  end
 		  if @user
 		    session[:user_id] = @user.id
-		    redirect_to "/chatroom/#{@group.entry_pass}", notice: 'グループを作成しました。'
+		    redirect_to "/chatroom/#{@group.entry_pass}", notice: 'グループにログインしました。'
 		  else
-			redirect_to '/chatroom/login', notice: "もう一度実行してください"
+			flash[:error] = "もう一度実行してください。"
+			redirect_to '/chatroom/login'
 		  end
 		else
-			redirect_to '/chatroom/login', notice: "パスワードまたはグループIDが違います。"
+			flash[:error] = "パスワードまたはグループIDが違います。"
+			redirect_to '/chatroom/login'
 		end
 	end
 

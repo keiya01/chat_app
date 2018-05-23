@@ -1,6 +1,5 @@
 class Message < ApplicationRecord
-	session = Thread.current[:request].session ? Thread.current[:request].session : ""
-	after_create_commit { MessageBroadcastJob.perform_later(self, session[:user_id]) }
+	after_create_commit { MessageBroadcastJob.perform_later(self) }
 	belongs_to :group
 	belongs_to :user
 end

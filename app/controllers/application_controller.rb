@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
      @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
+  # MessageBroadcastJobでcurrent_userを判別するための関数
   def message_current
 	   Message.current ||= User.find(session[:user_id]) if session[:user_id]
   end

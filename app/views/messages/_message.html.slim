@@ -1,12 +1,16 @@
 - if message.user_id.to_i == user.id.to_i
   .message-contents.message-right
     .message.message-right.my-message
+      = user.id
+      = message.user_id
       p.message-body = message.body
     .clear-right
     p.message-time.message-right = simple_time(message.created_at)
   .clear-right
 - else
   .message-contents.message-left
+    = user.id
+    = message.user_id
     p.message-name.name-left = user.name
     .clear-left
     .message.message-left

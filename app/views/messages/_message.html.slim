@@ -1,4 +1,4 @@
-- if message.user_id.to_i == user.id
+- if message.user_id.to_i == user.id.to_i
   .message-contents.message-right
     .message.message-right.my-message
       p.message-body = message.body

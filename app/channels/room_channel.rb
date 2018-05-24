@@ -1,7 +1,7 @@
 class RoomChannel < ApplicationCable::Channel
 
   def subscribed
-    stream_from current_user.id
+    stream_from "room_channel"
     stream_for current_user.group_id
   end
 
@@ -11,7 +11,7 @@ class RoomChannel < ApplicationCable::Channel
 
   def speak(data)
   	# current_user設定しないと使えない
-  	Message.create!(body: data['message'], user_id: data['user_id'], group_id: data['group'])
+  	Message.create!(body: data['message'], user_id: current_user.id, group_id: data['group'])
   end
 
 end

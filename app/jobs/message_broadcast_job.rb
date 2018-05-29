@@ -2,7 +2,7 @@ class MessageBroadcastJob < ApplicationJob
   queue_as :default
 
   def perform(message, user)
-  	group = message.user_id
+  	group = message.group_id
     RoomChannel.broadcast_to(group, message: render_message(message, user))
   end
 

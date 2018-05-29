@@ -1,20 +1,9 @@
-- if message.user_id.to_i == user.id.to_i
-  .message-contents.message-right
-    .message.message-right.my-message
-      = user.id
-      = message.user_id
-      p.message-body = message.body
-    .clear-right
-    p.message-time.message-right = simple_time(message.created_at)
-  .clear-right
-- else
-  .message-contents.message-left
-    = user.id
-    = message.user_id
+- message_user = User.find(message.user_id)
+  .message
     p.message-name.name-left = user.name
-    .clear-left
-    .message.message-left
+    p.message-time = simple_time(message.created_at)
+    .clear-left.clear-right
+    .message-left
       p.message-body = message.body
     .clear-left
-    p.message-time.message-left = simple_time(message.created_at)
   .clear-left

@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   post 'chatroom/:pass/logout' => 'group#logout'
   get 'chatroom/:pass' => 'group#show'
 
+
 end

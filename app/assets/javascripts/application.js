@@ -18,4 +18,12 @@
 //= require_tree .
 $(document).on('turbolinks:load', function() {
 
+	$('#chat-message').submit(function(){
+	   var chatText = $('#chat-text').val();
+	   var chatGroup = $('#group_id').val();
+       App.room.speak(chatText, chatGroup);
+       $('#chat-text').val('');
+       return false;
+   });
+
 });

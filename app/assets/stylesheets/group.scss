@@ -104,7 +104,7 @@
 	padding-top: 60px;
 	max-width: 480px;
 	margin: 0 auto;
-	padding-bottom: 90px;
+	padding-bottom: 85px;
 }
 .message-list{
 	width: 100%;
@@ -114,15 +114,7 @@
 	display: block;
 	width: 100%;
 	height: 100%;
-	margin: 15px 0;
-}
-.message-right{
-	float: right;
-	margin-right: 5px;
-}
-.message-left{
-	float: left;
-	margin-left: 5px;
+	padding: 10px 0;
 }
 .message-name{
 	font-size: 15px;
@@ -136,21 +128,27 @@
 .message-time{
 	font-size: 13px;
 	color: #555;
+	margin-right: 5px;
+	float: right;
 }
 .message{
 	display: inline-block;
 	height: 100%;
-	background-color: #eee;
-	border-radius: 20px;
-	padding: 5px 15px;
+	width: 100%;
+	background-color: #fff;
+	padding: 10px 0;
+}
+.message:not(:first-child){
+	border-top: 1px solid #ccc;
 }
 .my-message{
 	background-color: #006666;
 	color: #fff;
 }
 .message-body{
-	font-size: 16px;
-	max-width: 150px;
+	font-size: 14px;
+	width: 95%;
+	margin: 10px auto;
 	word-wrap: break-word;
 }
 .chat-form{
@@ -159,12 +157,24 @@
 	right: 0;
 	left: 0;
 	background-color: #eee;
-	height: 80px;
+	height: 85px;
 	text-align: center;
 }
-.chat-form input{
+.chat-form textarea{
 	padding: 5px 10px;
-	border-radius: 20px;
-	vertical-align: center;
+	border-radius: 10px;
+	margin-top: 6px;
 	font-size: 16px;
+}
+.chat-submit{
+	width: 50px;
+	height: 50px;
+	font-size: 15px;
+	position: absolute;
+	top: 15px;
+	right: 20px;
+	border-radius: 10px;
+	background-color: blue;
+	color: #fff;
+	font-weight: bold;
 }

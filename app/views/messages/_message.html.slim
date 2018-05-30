@@ -1,9 +1,9 @@
 - message_user = User.find(message.user_id)
-  .message
-    p.message-name.name-left = user.name
-    p.message-time = simple_time(message.created_at)
-    .clear-left.clear-right
-    .message-left
-      p.message-body = message.body
-    .clear-left
+.message
+  p.message-name.name-left = message_user.name
+  p.message-time = simple_time(message.created_at)
+  .clear-left.clear-right
+  .message-left
+    p.message-body = message.body
   .clear-left
+.clear-left

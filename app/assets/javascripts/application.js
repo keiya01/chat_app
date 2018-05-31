@@ -45,9 +45,19 @@ $(document).on('turbolinks:load', function() {
 	$("#chat-text").css("lineHeight","30px");//init
 	$(".chat-room").css("padding-bottom","45px");//init
 
+	$("#chat-text").focus(function(evt){
+    	var chatHeight = evt.target.scrollHeight;
+    	var roomHeight = chatHeight + 60;
+    	$(evt.target).height(chatHeight);
+		$(".chat-room").css("padding-bottom",roomHeight+"px");
+	}).blur(function(){
+    	$("#chat-text").height(30);
+		$("#chat-text").css("lineHeight","30px");
+		$(".chat-room").css("padding-bottom","45px");
+	});
+
 	$("#chat-text").on("input",function(evt){
-			var roomHeight = evt.target.scrollHeight + 70;
-			var btnBottom = evt.target.scrollHeight - 30;
+			var roomHeight = evt.target.scrollHeight + 60;
 		if(evt.target.scrollHeight > evt.target.offsetHeight){
 			$(evt.target).height(evt.target.scrollHeight);
 			$(".chat-room").css("padding-bottom",roomHeight+"px");
@@ -57,7 +67,6 @@ $(document).on('turbolinks:load', function() {
 				$(evt.target).height($(evt.target).height() - lineHeight);
 				if(evt.target.scrollHeight > evt.target.offsetHeight){
 					$(evt.target).height(evt.target.scrollHeight);
-					var roomHeight = evt.target.scrollHeight + 70;
 					$(".chat-room").css("padding-bottom",roomHeight+"px");
 					break;
 				}

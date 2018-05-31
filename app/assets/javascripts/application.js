@@ -18,12 +18,24 @@
 //= require_tree .
 $(document).on('turbolinks:load', function() {
 
+	var chatPosition = $('#chat-room')[0].scrollHeight;
+	if(chatPosition){
+		$('html,body').delay(100).animate({
+      		scrollTop: chatPosition
+    	},'fast');
+	}
+
 	$('#chat-message').submit(function(){
-	   var chatText = $('#chat-text').val();
-	   var chatGroup = $('#group_id').val();
-       App.room.speak(chatText, chatGroup);
-       $('#chat-text').val('');
-       return false;
-   });
+		$('#chat-submit').prop('disabled', true);
+		var chatText = $('#chat-text').val();
+	   	var chatGroup = $('#group_id').val();
+       	App.room.speak(chatText, chatGroup);
+       	$('#chat-text').val('');
+		setTimeout(function(){
+   			$('#chat-submit').prop('disabled', false);
+       		$('html,body').animate({scrollTop: chatPosition}, 'fast');
+   		}, 800);
+       	return false;
+    });
 
 });

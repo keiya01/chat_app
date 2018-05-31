@@ -1,7 +1,7 @@
 .chat-room-header
-  = link_to '退出する', "/chatroom/#{@group.entry_pass}/logout", method: 'post', class: 'logout border-none btn-white'
+  = link_to '会話終了', "/chatroom/#{@group.entry_pass}/logout", method: 'post', class: 'logout border-none btn-white'
   h3.chat-name = @group.name
-.chat-room
+.chat-room#chat-room
   .message-list
     #messages
       = render partial: 'messages/message', collection: @messages, as: 'message', locals: {user: @current_user}

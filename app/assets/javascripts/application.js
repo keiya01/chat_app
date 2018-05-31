@@ -33,7 +33,7 @@ $(document).on('turbolinks:load', function() {
 		$('#chat-text').val('');
 		$("#chat-text").height(30);
 		$("#chat-text").css("lineHeight","30px");
-		$(".chat-room").css("padding-bottom","100px");
+		$(".chat-room").css("padding-bottom","45px");
 		setTimeout(function(){
 			$('#chat-submit').prop('disabled', false);
 			$('html,body').animate({scrollTop: chatPosition}, 'fast');
@@ -43,12 +43,13 @@ $(document).on('turbolinks:load', function() {
 
     $("#chat-text").height(30);//init
 	$("#chat-text").css("lineHeight","30px");//init
-	$(".chat-room").css("padding-bottom","100px");//init
+	$(".chat-room").css("padding-bottom","45px");//init
 
 	$("#chat-text").on("input",function(evt){
+			var roomHeight = evt.target.scrollHeight + 70;
+			var btnBottom = evt.target.scrollHeight - 30;
 		if(evt.target.scrollHeight > evt.target.offsetHeight){
 			$(evt.target).height(evt.target.scrollHeight);
-			var roomHeight = evt.target.scrollHeight + 70;
 			$(".chat-room").css("padding-bottom",roomHeight+"px");
 		}else{
 			var lineHeight = Number($(evt.target).css("lineHeight").split("px")[0]);

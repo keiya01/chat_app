@@ -7,7 +7,7 @@
       = render partial: 'messages/message', collection: @messages, as: 'message', locals: {user: @current_user}
   .chat-form
     = form_tag '#', id:'chat-message' do
-      textarea class="chat-text" id="chat-text" rows="4"
+      textarea class="chat-text" id="chat-text" placeholder="メッセージを入力"
       input type="hidden" id="user_id" value="#{@current_user.id}"
       input type="hidden" id="group_id" value="#{@group.id}"
       input type="submit" class="chat-submit" id="chat-submit" value="送信"

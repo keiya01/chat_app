@@ -21,21 +21,47 @@ $(document).on('turbolinks:load', function() {
 	var chatPosition = $('#chat-room')[0].scrollHeight;
 	if(chatPosition){
 		$('html,body').delay(100).animate({
-      		scrollTop: chatPosition
-    	},'fast');
+			scrollTop: chatPosition
+		},'fast');
 	}
 
 	$('#chat-message').submit(function(){
 		$('#chat-submit').prop('disabled', true);
 		var chatText = $('#chat-text').val();
-	   	var chatGroup = $('#group_id').val();
-       	App.room.speak(chatText, chatGroup);
-       	$('#chat-text').val('');
+		var chatGroup = $('#group_id').val();
+		App.room.speak(chatText, chatGroup);
+		$('#chat-text').val('');
+		$("#chat-text").height(30);
+		$("#chat-text").css("lineHeight","30px");
+		$(".chat-room").css("padding-bottom","100px");
 		setTimeout(function(){
-   			$('#chat-submit').prop('disabled', false);
-       		$('html,body').animate({scrollTop: chatPosition}, 'fast');
-   		}, 800);
-       	return false;
-    });
+			$('#chat-submit').prop('disabled', false);
+			$('html,body').animate({scrollTop: chatPosition}, 'fast');
+		}, 800);
+		return false;
+	});
+
+    $("#chat-text").height(30);//init
+	$("#chat-text").css("lineHeight","30px");//init
+	$(".chat-room").css("padding-bottom","100px");//init
+
+	$("#chat-text").on("input",function(evt){
+		if(evt.target.scrollHeight > evt.target.offsetHeight){
+			$(evt.target).height(evt.target.scrollHeight);
+			var roomHeight = evt.target.scrollHeight + 70;
+			$(".chat-room").css("padding-bottom",roomHeight+"px");
+		}else{
+			var lineHeight = Number($(evt.target).css("lineHeight").split("px")[0]);
+			while (true){
+				$(evt.target).height($(evt.target).height() - lineHeight);
+				if(evt.target.scrollHeight > evt.target.offsetHeight){
+					$(evt.target).height(evt.target.scrollHeight);
+					var roomHeight = evt.target.scrollHeight + 70;
+					$(".chat-room").css("padding-bottom",roomHeight+"px");
+					break;
+				}
+			}
+		}
+	});
 
 });

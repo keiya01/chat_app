@@ -7,5 +7,10 @@ Rails.application.routes.draw do
   post 'chatroom/:pass/logout' => 'group#logout'
   get 'chatroom/:pass' => 'group#show'
 
+  get 'users/regist/:pass' => 'users#regist'
+  post 'users/regist/:pass' => 'users#regist_form'
+  get 'users/edit' => 'users#edit'
+  post 'users/update' => 'users#update'
+
 
 end

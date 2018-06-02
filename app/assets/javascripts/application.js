@@ -29,7 +29,8 @@ $(document).on('turbolinks:load', function() {
 		$('#chat-submit').prop('disabled', true);
 		var chatText = $('#chat-text').val();
 		var chatGroup = $('#group_id').val();
-		App.room.speak(chatText, chatGroup);
+		var chatUser = $('#user_id').val();
+		App.room.speak(chatText, chatGroup, chatUser);
 		$('#chat-text').val('');
 		$("#chat-text").height(30);
 		$("#chat-text").css("lineHeight","30px");

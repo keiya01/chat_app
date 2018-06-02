@@ -8,5 +8,5 @@ App.room = App.cable.subscriptions.create "RoomChannel",
   received: (data) ->
     $('#messages').append data['message']
 
-  speak: (message, group) ->
-    @perform 'speak', message: message, group: group
+  speak: (message, group, user_id) ->
+    @perform 'speak', message: message, group: group, user_id: user_id

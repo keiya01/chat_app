@@ -1,0 +1,10 @@
+.new-user-page
+  .new-user-form
+    h3 最後に名前を登録
+    .error
+      - if flash[:error]
+        p = flash[:error]
+    = form_tag "/users/regist/#{@group.entry_pass}" do
+      input.input-username type="text" name="name" placeholder="名前を入力" value="#{params[:name]}"
+      br
+      input.submit-btn type="submit" value='チャット開始！' data-disable-with="ロード中..."

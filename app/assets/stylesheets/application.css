@@ -62,7 +62,7 @@ textarea::-webkit-scrollbar{
 /*button*/
 .submit-btn{
 	background-color: #4169e1;
-	padding: 10px 15px;
+	padding: 5px 15px;
 	border-radius: 30px;
 	color: #fff;
 	font-size: 15px;

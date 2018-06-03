@@ -9,8 +9,8 @@ Rails.application.routes.draw do
 
   get 'users/regist/:pass' => 'users#regist'
   post 'users/regist/:pass' => 'users#regist_form'
-  get 'users/edit' => 'users#edit'
-  post 'users/update' => 'users#update'
+  get 'users/:id/edit' => 'users#edit'
+  post 'users/:id/update' => 'users#update'
 
 
 end

@@ -2,6 +2,8 @@
   .new-user-form
     h3 最後に名前を登録
     .error
+      - @user.errors.full_messages.each do |message|
+      	p = message
       - if flash[:error]
         p = flash[:error]
     = form_tag "/users/regist/#{@group.entry_pass}" do

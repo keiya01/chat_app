@@ -11,6 +11,23 @@ class ApplicationController < ActionController::Base
 
   def current_group_check
      @current_group ||= Group.find_by(entry_pass: session[:group_id]) if session[:group_id]
+     if !@current_group && session[:group_id]
+      session[:group_id] = nil
+      redirect_to '/', notice: 'グループが存在しません。'
+    end
+  end
+
+  def brock_current_group
+    if @current_group
+      redirect_to "/chatroom/#{@group.entry_pass}", notice: "グループに参加中です。"
+    end
+  end
+
+  def brock_not_current_group
+    unless @current_group
+      flash[:notice] = "ログインしてください。"
+      redirect_to("/chatroom/login")
+    end
   end
 
   # MessageBroadcastJobでcurrent_userを判別する
@@ -18,18 +35,5 @@ class ApplicationController < ActionController::Base
 	   Message.current ||= User.find(session[:user_id]) if session[:user_id]
   end
 
-  def brock_not_current_user
-  	unless @current_user
-  		flash[:notice] = "ログインしてください。"
-  		redirect_to("/chatroom/login")
-  	end
-  end
 
-  def brock_current_user
-  	if @current_user
-  		@group = Group.find_by(entry_pass: session[:group_id])
-  		flash[:notice] = "ログアウトしてください。"
-  		redirect_to("/chatroom/#{@group.entry_pass}")
-  	end
-  end
 end

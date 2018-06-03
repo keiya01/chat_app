@@ -1,11 +1,12 @@
 class GroupController < ApplicationController
-	before_action :brock_not_current_user, {only: [:show, :logout]}
+	before_action :brock_current_group, {only: [:new, :create, :login, :login_form]}
+	before_action :brock_not_current_group, {only: [:show, :logout]}
 	before_action :check_group_auth, {only: [:show, :logout]}
-	before_action :brock_current_user, {only: [:new, :create, :login, :login_form]}
 
 	def show
 		@group = Group.find_by(entry_pass: params[:pass])
 		@messages = Message.where(group_id: @group.id).order(created_at: 'ASC')
+		@user = User.new
 		if @current_group.entry_pass != params[:pass]
 			redirect_to "/chatroom/#{@current_group.entry_pass}", notice: '権限がありません。'
 		end
@@ -48,7 +49,10 @@ class GroupController < ApplicationController
 		@group = Group.find_by(entry_pass: params[:pass])
 		if @current_group && @current_group.entry_pass == @group.entry_pass
 			session[:group_id] = nil
-			@current_user.destroy if @current_user.nickname.blank?
+			if @current_user.nickname.blank?
+				@current_user.destroy
+				session[:user_id] = nil
+			end
 			@group.destroy if @group.user_id == @current_user.id
 			redirect_to '/', notice: 'ありがとうございました。'
 		else

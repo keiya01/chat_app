@@ -93,9 +93,20 @@
 }
 .chat-room-header .logout{
 	font-size: 15px;
+	color: #fff;
 	position: absolute;
 	top: 20px;
 	left: 10px;
+	cursor: pointer;
+
+}
+.chat-room-header .login{
+	font-size: 15px;
+	color: #fff;
+	position: absolute;
+	top: 20px;
+	right: 10px;
+	cursor: pointer;
 
 }
 .chat-room{
@@ -152,6 +163,8 @@
 	font-size: 14px;
 	width: 95%;
 	margin: 10px auto;
+	line-height: 1.6em;
+	letter-spacing: 0.1em;
 	word-wrap: break-word;
 }
 .chat-form{
@@ -181,10 +194,7 @@
 	position: absolute;
 	bottom: 8px;
 	right: -63px;
-	width: 50px;
-	height: 35px;
-	line-height: 30px;
-	text-align: center;
+	padding: 5px 8px;
 	font-size: 15px;
 	border-radius: 10px;
 	background-color: blue;
@@ -194,8 +204,81 @@
 .chat-submit:disabled{
 	background-color: #708090;
 }
+#logout-modal-page{
+	display: none;
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	z-index: 200;
+	background-color: rgba(0,0,0,0.5);
+	text-align: center;
+	padding-top: 130px;
+}
+#logout-modal{
+	display: inline-block;
+	width: 90%;
+	max-width: 480px;
+	background-color: #81F781;
+	text-align: left;
+	padding: 15px 10px;
+	border-radius: 10px;
+}
+.logout-message-box p{
+	font-size: 14px;
+	color: #333;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+#logout-modal label{
+	font-size: 13px;
+	color: #555;
+	padding-top: 10px;
+	padding-left: 5px;
+}
+#logout-modal .logout-text{
+	width: 100%;
+	border-radius: 20px;
+	padding: 5px 10px;
+	margin-top: 3px;
+	margin-bottom: 10px;
+	font-size: 16px;
+}
+.logout-btn-box{
+	width: 80%;
+	max-width: 250px;
+	margin: 0 auto;
+	margin-top: 10px;
+}
+.logout-submit-btn{
+	background-color: #4169e1;
+	padding: 5px 15px;
+	border-radius: 30px;
+	color: #fff;
+	font-size: 15px;
+	font-weight: bold;
+	float: left;
+}
+.logout-submit-btn:disabled{
+	background-color: #708090;
+}
+.exit-btn{
+	background-color: tomato;
+	padding: 5px 15px;
+	border-radius: 30px;
+	color: #fff;
+	font-size: 15px;
+	font-weight: bold;
+	float: right;
+}
 @media screen and (min-width: 600px){
 	.chat-form{
+		text-align: center;
+	}
+}
+@media screen and (min-width: 380px){
+	.logout-message-box{
 		text-align: center;
 	}
 }

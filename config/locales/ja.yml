@@ -36,6 +36,8 @@ ja:
     attributes:
       user:
         name: ニックネーム
+        nickname: ユーザーID
+        password_digest: パスワード
       message:
         body: あなたの秘密
       group:

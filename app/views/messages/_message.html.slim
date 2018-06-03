@@ -4,6 +4,6 @@
   p.message-time = simple_time(message.created_at)
   .clear-left.clear-right
   .message-left
-    p.message-body = message.body
+    p.message-body = html_escape(message.body).gsub(/\n/, '<br>').html_safe
   .clear-left
 .clear-left

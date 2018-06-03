@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-	before_action :brock_not_current_user, {only: [:edit, :update]}
-	before_action :brock_current_user, {only: [:regist, :regist_form]}
+	before_action :brock_not_current_group, {only: [:edit, :update]}
+	before_action :brock_difference_group, {only: [:regist, :regist_form]}
 
 	def regist
 		@user = User.new
@@ -15,16 +15,19 @@ class UsersController < ApplicationController
 			return
 		end
 
-		@user = User.new(name: params[:name]) unless @current_user
+		@user = User.new(name: params[:name], password: 'password') unless @current_user
 		if !@user
 			@current_user.name = params[:name];
 			@current_user.save
 			redirect_to "/chatroom/#{@group.entry_pass}", notice: 'グループを作成しました。'
 		else
-			@user.save
-			session[:user_id] = @user.id
-			p "SUCCESS!![#{session[:user_id]}]"
-			redirect_to "/chatroom/#{@group.entry_pass}", notice: 'グループを作成しました。'
+			if @user.save
+				session[:user_id] = @user.id
+				p "SUCCESS!![#{session[:user_id]}]"
+				redirect_to "/chatroom/#{@group.entry_pass}", notice: 'グループを作成しました。'
+			else
+				render 'users/regist'
+			end
 		end
 
 	end
@@ -33,12 +36,33 @@ class UsersController < ApplicationController
 	end
 
 	def update
+		@user = User.find(params[:id])
+		@group = Group.find_by(entry_pass: params[:group_pass])
+		@user.nickname = params[:nickname]
+		@user.password = params[:password]
+		if params[:nickname].blank? || params[:password].blank?
+			flash[:error] = "値を入力してください。"
+			redirect_to "/chatroom/#{@group.entry_pass}"
+		elsif @user.save
+			session[:group_id] = nil
+			redirect_to '/', notice: '登録しました。'
+		else
+			# エラーの方法考える
+			render 'group/show'
+		end
 	end
 
 	private
 	def group_user_auth
 		if session[:group_id] != params[:pass]
 			redirect_to '/chatroom/login', notice: '権限がありません'
+		end
+	end
+
+	def brock_difference_group
+		check_group = Group.find_by(entry_pass: params[:pass])
+		if check_group && @current_group && check_group.entry_pass != @current_group.entry_pass
+			redirect_to "/chatroom/#{@current_group.entry_pass}", notice: '権限がありません。'
 		end
 	end
 

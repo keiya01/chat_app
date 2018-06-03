@@ -1,6 +1,11 @@
 .chat-room-header
-  = link_to '会話終了', "/chatroom/#{@group.entry_pass}/logout", method: 'post', class: 'logout border-none btn-white'
+  - if @current_user.nickname == nil
+    p.logout#logout-btn 会話終了
+  - else
+    = link_to '会話終了', "/chatroom/#{@group.entry_pass}/logout", method: 'post', class: 'logout border-none btn-white'
   h3.chat-name = @group.name
+  - if @current_user.nickname == nil
+    p.login#login-btn ログイン
 .chat-room#chat-room
   .message-list
     #messages
@@ -12,3 +17,30 @@
         input type="hidden" id="group_id" value="#{@group.id}"
         textarea class="chat-text" id="chat-text" placeholder="メッセージを入力"
         input type="submit" class="chat-submit" id="chat-submit" value="送信"
+- logout_modal_show = 'display:block;' if @user.errors.any? || flash[:error]
+#logout-modal-page style="#{logout_modal_show}"
+  #logout-modal
+    .logout-message-box
+      p
+       | ■会話を終了するとトーク履歴が削除されます。
+       br
+       | ■トーク履歴を残すには会員登録をしてください。
+    .error
+      - if flash[:error]
+        p = flash[:error]
+      - if @user.errors.any?
+        - @user.errors.full_messages.each do |message|
+          p = message
+    = form_tag "/users/#{@current_user.id}/update" do
+      label name="nickname" ユーザーID(半角英数字で入力)
+      br
+      input.logout-text#logout-nickname type="text" name="nickname"
+      br
+      label name="password" パスワード(半角英数字で入力)
+      br
+      input.logout-text#logout-password type="password" name="password"
+      br
+      input type="hidden" name="group_pass" value="#{@group.entry_pass}"
+      .logout-btn-box
+        input.logout-submit-btn type="submit" value="登録する"
+        = link_to '会話終了', "/chatroom/#{@group.entry_pass}/logout", method: 'post', class: 'exit-btn border-none btn-white'

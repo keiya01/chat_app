@@ -58,10 +58,11 @@ $(document).on('turbolinks:load', function() {
 	});
 
 	$("#chat-text").on("input",function(evt){
-			var roomHeight = evt.target.scrollHeight + 60;
+		var roomHeight = evt.target.scrollHeight + 60;
 		if(evt.target.scrollHeight > evt.target.offsetHeight){
 			$(evt.target).height(evt.target.scrollHeight);
 			$(".chat-room").css("padding-bottom",roomHeight+"px");
+			$("#chat-text").css("lineHeight","20px");
 		}else{
 			var lineHeight = Number($(evt.target).css("lineHeight").split("px")[0]);
 			while (true){
@@ -72,6 +73,19 @@ $(document).on('turbolinks:load', function() {
 					break;
 				}
 			}
+		}
+	});
+
+	$('#logout-btn').on('click', function(){
+		if(!$('#logout-modal-page').hasClass('active')){
+			$('#logout-modal-page').addClass('active');
+			$('#logout-modal-page').show();
+		}
+	});
+	$('#logout-modal-page').on('click', function(e){
+		if($('#logout-modal-page').hasClass('active') && !$(e.target).closest('#logout-modal').length){
+			$('#logout-modal-page').removeClass('active');
+			$('#logout-modal-page').hide();
 		}
 	});
 

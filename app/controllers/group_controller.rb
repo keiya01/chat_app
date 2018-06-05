@@ -19,12 +19,11 @@ class GroupController < ApplicationController
 
 	def create
 		pass = SecureRandom.urlsafe_base64
-		@group = Group.new(name: 'Group', entry_pass: pass, password: params[:password], name_id: params[:name_id])
+		@group = Group.new(name: params[:name], entry_pass: pass, question: params[:question], answer: params[:answer])
 		if @group.save
           session[:group_id] = @group.entry_pass
-		  session[:user_id] = @user.id
 		  # regist画面に遷移する
-		  redirect_to "/chatroom/#{@group.entry_pass}", notice: 'グループを作成しました。'
+		  redirect_to "/users/regist/#{@group.entry_pass}", notice: 'グループを作成しました。'
 		else
 	      render 'group/new'
 		end
@@ -32,16 +31,21 @@ class GroupController < ApplicationController
 
 	def login
 		@user = User.new
+		@group = Group.find_by(entry_pass: params[:pass])
 	end
 
 	def login_form
-		@group = Group.find_by(name_id: params[:name_id])
-		if @group && @group.authenticate(params[:password])
+		@group = Group.find_by(entry_pass: params[:pass])
+		if @group && @group.answer == params[:user_answer]
 			session[:group_id] = @group.entry_pass
-			redirect_to "/users/regist/#{@group.entry_pass}", notice: '名前を入力してください。'
+			redirect_to "/users/regist/#{@group.entry_pass}", notice: 'ログインしました！'
 		else
-			flash[:error] = "パスワードまたはグループIDが違います。"
-			redirect_to '/chatroom/login'
+			if @group
+				flash[:error] = "答えが違います。"
+				redirect_to "/chatroom/#{@group.entry_pass}/login"
+			else
+				redirect_to '/', notice: 'お探しのグループは存在しません。'
+			end
 		end
 	end
 
@@ -64,8 +68,7 @@ class GroupController < ApplicationController
 	private
 	def check_group_auth
 		if session[:group_id] != params[:pass]
-			session[:user_id] = nil
-			redirect_to '/', notice: '権限がありません。'
+			redirect_to "/chatroom/#{session[:group_id]}", notice: '権限がありません。'
 		end
 	end
 

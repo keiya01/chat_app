@@ -19,14 +19,14 @@ class ApplicationController < ActionController::Base
 
   def brock_current_group
     if @current_group
-      redirect_to "/chatroom/#{@group.entry_pass}", notice: "グループに参加中です。"
+      redirect_to "/chatroom/#{@current_group.entry_pass}", notice: "グループに参加中です。"
     end
   end
 
   def brock_not_current_group
     unless @current_group
       flash[:notice] = "ログインしてください。"
-      redirect_to("/chatroom/login")
+      redirect_to("/chatroom/#{params[:pass]}/login")
     end
   end
 

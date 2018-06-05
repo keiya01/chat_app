@@ -1,18 +1,14 @@
 .new-form
-    h3 ログイン
+    h3 問題！
+    p.login-text 問題に正解するとグループに入ることが出来ます！
     .error
       - if flash[:error]
         p = flash[:error]
       - @user.errors.full_messages.each do |message|
         p = message
-    = form_tag "/chatroom/login_form" do
-      label name="name_id" グループID
+    = form_tag "/chatroom/#{@group.entry_pass}/login_form" do
+      label name="name_id" = @group.question
       br
-      input.input-text type="text" name="name_id" placeholder="グループID入力" value="#{params[:name_id]}"
-      br
-      label name="password" パスワード
-      br
-      input.input-text type="password" name="password" placeholder="パスワード入力"
+      input.input-text type="text" name="user_answer" placeholder="答えを入力" value="#{params[:user_answer]}"
       br
       input.submit-btn type="submit" value='ログイン' data-disable-with="処理中..."
-    p#move-new = link_to 'グループ作成画面へ', '/', class: 'border-none btn-white move-btn'

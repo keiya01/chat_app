@@ -10,4 +10,54 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
+    .home-header
+      - uri = request.path
+      - if @current_group && uri == "/chatroom/#{@group.entry_pass}"
+        h3 = @group.name
+        - if @current_user && @current_user.nickname == nil
+          p.user-create-btn.logout#logout-btn 会話終了
+        - else
+          = link_to '会話終了', "/chatroom/#{@group.entry_pass}/logout", method: 'post', class: 'user-create-btn border-none btn-white'
+        - if @current_user && @current_user.nickname == nil
+          p.user-login-btn.login#login-btn ログイン
+      - else
+        h3 InChatBox
+        = link_to '登録する', '/', class: 'border-none user-create-btn'
+        = link_to 'ログイン', '/', class: 'border-none user-login-btn'
+    - logout_modal_show = 'display:block;' if @user && @user.errors.any? || flash[:error]
+    #logout-modal-page style="#{logout_modal_show}"
+      #logout-modal
+        .logout-message-box
+          - if @current_user && @current_user.id == @current_group.user_id && @current_user.nickname.blank?
+            p
+             | 会話を終了しますか？
+             br
+             | グループリーダーが会話から抜けるとグループが削除されます。
+             br
+             | 会員登録をすると便利な機能が追加されます。
+          - elsif @current_user && @current_user.nickname.blank?
+            p
+             | 会話を終了しますか？
+             br
+             | 会員登録をすると便利な機能が追加されます。
+        .error
+          - if flash[:error]
+            p = flash[:error]
+          - if @user && @user.errors.any?
+            - @user.errors.full_messages.each do |message|
+              p = message
+        - if @current_user
+          = form_tag "/users/#{@current_user.id}/update" do
+            label name="nickname" ユーザーID(半角英数字で入力)
+            br
+            input.logout-text#logout-nickname type="text" name="nickname"
+            br
+            label name="password" パスワード(半角英数字で入力)
+            br
+            input.logout-text#logout-password type="password" name="password"
+            br
+            input type="hidden" name="group_pass" value="#{@group.entry_pass}"
+            .logout-btn-box
+              input.logout-submit-btn type="submit" value="登録する"
+              = link_to '会話終了', "/chatroom/#{@group.entry_pass}/logout", method: 'post', class: 'exit-btn border-none btn-white'
   = yield

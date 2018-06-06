@@ -1,4 +1,15 @@
 .group-new-page
-  h1 チャットボックス
-  = link_to '使い方', '/', class: 'howtouse-link border-none'
-  = render partial: 'loginform'
+  .new-form
+    h3 問題！
+    p.login-text 問題に正解するとグループに入ることが出来ます！
+    .error
+      - if flash[:error]
+        p = flash[:error]
+      - @user.errors.full_messages.each do |message|
+        p = message
+    = form_tag "/chatroom/#{@group.entry_pass}/login_form" do
+      label name="name_id" = @group.question
+      br
+      input.input-text type="text" name="user_answer" placeholder="答えを入力" value="#{params[:user_answer]}"
+      br
+      input.submit-btn type="submit" value='ログイン' data-disable-with="処理中..."

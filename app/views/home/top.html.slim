@@ -1,4 +1,10 @@
-.home-header
-  h3 InChatBox
-  = link_to '登録する', '/', class: 'border-none user-create-btn'
-  = link_to 'ログイン', '/', class: 'border-none user-login-btn'
+.home-main
+  .home-description-box
+    h3 すぐに簡単にグループチャットを始めよう！
+    p
+     | 連絡先を他人に知られたくない。
+	 br
+	 | 必要最低限の連絡だけしたい。
+	 br
+	 | 匿名でチャットがしたい。
+  = link_to 'すぐにグループを作る！', '/chatroom/new', class: 'border-none home-btn'

@@ -8,6 +8,7 @@
 	width: 100%;
 	text-align: center;
 	margin: 80px 0;
+	padding-top: 50px;
 }
 .group-new-page h1{
 	font-size: 30px;
@@ -79,41 +80,6 @@
 }
 
 // show page
-.chat-room-header{
-	width: 100%;
-	height: 60px;
-	background-color: #81F781;
-	position: fixed;
-	top: 0;
-	right: 0;
-	left: 0;
-	z-index: 100;
-	border-bottom: 1px solid #eee;
-	text-align: center;
-}
-.chat-name{
-	line-height: 60px;
-	font-size: 25px;
-	color: #555;
-}
-.chat-room-header .logout{
-	font-size: 15px;
-	color: #fff;
-	position: absolute;
-	top: 20px;
-	left: 10px;
-	cursor: pointer;
-
-}
-.chat-room-header .login{
-	font-size: 15px;
-	color: #fff;
-	position: absolute;
-	top: 20px;
-	right: 10px;
-	cursor: pointer;
-
-}
 .chat-room{
 	width: 100%;
 	height: 100%;

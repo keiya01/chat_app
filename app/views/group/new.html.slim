@@ -1,4 +1,25 @@
 .group-new-page
-  h1 チャットボックス
-  = link_to '使い方', '/', class: 'howtouse-link border-none'
-  = render partial: 'newform'
+  .new-form
+    h3 グループ作成
+    .error
+      - if @group
+        - @group.errors.full_messages.each do |message|
+          p = message
+      - if @user
+        - @user.errors.full_messages.each do |message|
+          p = message
+    = form_tag '/chatroom/create' do
+      label name="グループ名" グループ名
+      br
+      input.input-text type="text" name="name" placeholder="グループ名を入力" value="#{params[:name_id]}"
+      br
+      label name="question" 問題
+      br
+      input.input-text type="text" name="question" placeholder="友達しか知らない問題を入力"
+      br
+      label name="answer" 答え
+      br
+      input.input-text type="text" name="answer" placeholder="問題の答えを入力"
+      br
+      = link_to '【利用規約】をご確認ください。','/',class: 'border-none agreement-link'
+      input.submit-btn type="submit" value='作成する' data-disable-with="作成中..."

@@ -1,17 +1,43 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.home-header{
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	z-index: 100px;
-	height: 60px;
-	background-color: #fff;
-	border-bottom: 1px solid #aaa;
+.home-main{
+	text-align: center;
+	padding-top: 160px;
+	padding-bottom: 80px;
 }
-.home-header h3{
-	font-size: 25px;
-	
+.home-description-box{
+	width: 90%;
+	max-width: 400px;
+	margin: 0 auto;
+	height: 100%;
+	text-align: left;
+	margin-bottom: 130px;
+}
+.home-description-box h3{
+	color: #555;
+	font-weight: bold;
+	padding-bottom: 130px;
+	font-size: 20px;
+}
+.home-description-box p{
+	color: #999;
+	font-weight: bold;
+	font-size: 16px;
+	text-align: center;
+	line-height: 2em;
+}
+.home-btn{
+	display: inline-block;
+	background-color: #81F781;
+	padding: 10px 15px;
+	border-radius: 30px;
+	color: #fff;
+	font-size: 15px;
+	font-weight: bold;
+	width: 80%;
+	max-width: 480px;
+	margin: 0 auto;
+	margin-top: 10px;
+	text-align: center;
 }

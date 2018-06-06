@@ -54,7 +54,6 @@ class GroupController < ApplicationController
 		if @current_group && @current_group.entry_pass == @group.entry_pass
 			session[:group_id] = nil
 			if @current_user.nickname.blank?
-				@current_user.destroy
 				session[:user_id] = nil
 			end
 			@group.destroy if @group.user_id == @current_user.id

@@ -53,14 +53,9 @@ class GroupController < ApplicationController
 		@group = Group.find_by(entry_pass: params[:pass])
 		if @current_group && @current_group.entry_pass == @group.entry_pass
 			session[:group_id] = nil
-			if @current_user.nickname.blank?
-				session[:user_id] = nil
-			end
-			@group.destroy if @group.user_id == @current_user.id
 			redirect_to '/', notice: 'ありがとうございました。'
 		else
-			@group = Group.find(@current_user.group_id)
-			redirect_to "/chatroom/#{@group.entry_pass}", notice: '権限がありません。'
+			redirect_to "/chatroom/#{@current_group.entry_pass}", notice: '権限がありません。'
 		end
 	end
 

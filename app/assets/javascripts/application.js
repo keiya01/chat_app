@@ -14,6 +14,7 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require rails-ujs
+//= require social-share-button
 //= require turbolinks
 //= require_tree .
 $(document).on('turbolinks:load', function() {
@@ -76,16 +77,16 @@ $(document).on('turbolinks:load', function() {
 		}
 	});
 
-	$('#logout-btn').on('click', function(){
-		if(!$('#logout-modal-page').hasClass('active')){
-			$('#logout-modal-page').addClass('active');
-			$('#logout-modal-page').show();
+	$('#share-btn').on('click', function(){
+		if(!$('#share-modal-page').hasClass('active')){
+			$('#share-modal-page').addClass('active');
+			$('#share-modal-page').show();
 		}
 	});
-	$('#logout-modal-page').on('click', function(e){
-		if($('#logout-modal-page').hasClass('active') && !$(e.target).closest('#logout-modal').length){
-			$('#logout-modal-page').removeClass('active');
-			$('#logout-modal-page').hide();
+	$('#share-modal-page').on('click', function(e){
+		if($('#share-modal-page').hasClass('active') && !$(e.target).closest('#share-modal').length){
+			$('#share-modal-page').removeClass('active');
+			$('#share-modal-page').hide();
 		}
 	});
 

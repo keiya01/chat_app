@@ -19,6 +19,7 @@ gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 gem 'jquery-turbolinks'
 gem 'slim-rails', '3.1.3'
 gem 'font-awesome-rails'
+gem 'social-share-button'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes

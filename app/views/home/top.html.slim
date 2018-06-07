@@ -1,11 +1,27 @@
 .home-main
   .home-description-box
-    h3 すぐに簡単にグループチャットを始めよう！
+    h3.top-title すぐに簡単にグループチャットを始めよう！
     .description-text-box
-      p
-       | 連絡先を他人に知られたくない。
-	   br
-	   | 必要最低限の連絡だけしたい。
-	   br
-	   | 匿名でチャットがしたい。
-  = link_to 'すぐにグループを作る！', '/chatroom/new', class: 'border-none home-btn'
+      h3 こんな人にオススメ！
+      .home-description
+        p
+         | 連絡先を他人に知られたくない
+	     br
+	     | 必要最低限の連絡だけしたい
+	     br
+	     | 匿名でチャットがしたい
+	     br
+	     | SNS上での友達と複数で連絡をしたい
+	.how-to-box.description-text-box
+      h3 使い方！
+      .home-description
+        p
+         | 1.グループを作る
+	     br
+	     | 2.チャットで使う自分の名前を入力
+	     br
+	     | 3.右上の共有ボタンから共有する
+	     br
+	     | 4.チャット開始
+  .home-btn-box
+    = link_to 'すぐにグループを作る！', '/chatroom/new', class: 'border-none home-btn'

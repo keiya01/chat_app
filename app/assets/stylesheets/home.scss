@@ -12,12 +12,12 @@
 	margin: 0 auto;
 	height: 100%;
 	text-align: left;
-	margin-bottom: 130px;
+	margin-bottom: 100px;
 }
 .home-description-box h3{
 	color: #555;
 	font-weight: bold;
-	padding-bottom: 130px;
+	padding-bottom: 100px;
 	font-size: 20px;
 }
 .home-description-box p{
@@ -26,6 +26,14 @@
 	font-size: 16px;
 	text-align: center;
 	line-height: 2em;
+}
+.description-text-box{
+	width: 100%;
+	margin: 0 auto;
+	height: 100%;
+	padding: 40px 20px;
+	border: 1px solid #ccc;
+	box-shadow: 2px 5px 5px #ccc;
 }
 .home-btn{
 	display: inline-block;

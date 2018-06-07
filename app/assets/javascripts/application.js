@@ -34,7 +34,7 @@ $(document).on('turbolinks:load', function() {
 		$('#chat-text').val('');
 		$("#chat-text").height(30);
 		$("#chat-text").css("lineHeight","30px");
-		$(".chat-room").css("padding-bottom","45px");
+		$(".chat-room").css("padding-bottom","55px");
 		setTimeout(function(){
 			$('#chat-submit').prop('disabled', false);
 			$('html,body').animate({scrollTop: chatPosition}, 'fast');
@@ -44,24 +44,24 @@ $(document).on('turbolinks:load', function() {
 
     $("#chat-text").height(30);//init
 	$("#chat-text").css("lineHeight","30px");//init
-	$(".chat-room").css("padding-bottom","45px");//init
+	$(".chat-room").css("padding-bottom","55px");//init
 
 	$("#chat-text").focus(function(evt){
     	var chatHeight = evt.target.scrollHeight;
-    	var roomHeight = chatHeight + 60;
+    	var roomHeight = chatHeight + 70;
     	$(evt.target).height(chatHeight);
-		$(".chat-room").css("padding-bottom",roomHeight+"px");
+		$(".chat-room").css("padding-bottom",roomHeight - 35 +"px");
 	}).blur(function(){
     	$("#chat-text").height(30);
 		$("#chat-text").css("lineHeight","30px");
-		$(".chat-room").css("padding-bottom","45px");
+		$(".chat-room").css("padding-bottom","55px");
 	});
 
 	$("#chat-text").on("input",function(evt){
-		var roomHeight = evt.target.scrollHeight + 60;
+		var roomHeight = evt.target.scrollHeight + 70;
 		if(evt.target.scrollHeight > evt.target.offsetHeight){
 			$(evt.target).height(evt.target.scrollHeight);
-			$(".chat-room").css("padding-bottom",roomHeight+"px");
+			$(".chat-room").css("padding-bottom",roomHeight - 35 +"px");
 			$("#chat-text").css("lineHeight","20px");
 		}else{
 			var lineHeight = Number($(evt.target).css("lineHeight").split("px")[0]);
@@ -69,7 +69,7 @@ $(document).on('turbolinks:load', function() {
 				$(evt.target).height($(evt.target).height() - lineHeight);
 				if(evt.target.scrollHeight > evt.target.offsetHeight){
 					$(evt.target).height(evt.target.scrollHeight);
-					$(".chat-room").css("padding-bottom",roomHeight+"px");
+					$(".chat-room").css("padding-bottom",roomHeight - 35 +"px");
 					break;
 				}
 			}
